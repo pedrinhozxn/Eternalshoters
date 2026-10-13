@@ -673,7 +673,10 @@ function updateThirdPersonView(){
  thirdPersonCamera.lookAt(camera.position.x,camera.position.y-.25,camera.position.z);
  thirdPersonCamera.fov=camera.fov;thirdPersonCamera.aspect=camera.aspect;thirdPersonCamera.updateProjectionMatrix();
 }
-renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,.9));
+const renderer = new THREE.WebGLRenderer({
+  antialias: false,
+  powerPreference: 'low-power'
+}); renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,.9));
 renderer.shadowMap.enabled=false;renderer.shadowMap.type=THREE.BasicShadowMap;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
 renderer.outputColorSpace=THREE.SRGBColorSpace;document.body.appendChild(renderer.domElement);
 const hemi=new THREE.HemisphereLight(0xe4f6ff,0x39404a,2.35);scene.add(hemi);
