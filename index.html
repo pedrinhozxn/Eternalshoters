@@ -345,17 +345,61 @@ body:has(#screen.hidden) #returnMainMenu{display:block}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.150.1/three.min.js"></script>
 
 <style>
-/* ETERNALSHOTERS — PRETO E DOURADO */
+
+/* ETERNALSHOTERS — TEMA PRETO E DOURADO */
 #screen:not(.menu-pink) {
   background: #080808 !important;
-  color: #f5f0df;
+  color: #f5e7b2 !important;
 }
 
-#screen:not(.menu-pink) .layout {
-  background: rgba(8, 8, 8, 0.96);
-  border-color: #a78636;
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.12);
+#screen:not(.menu-pink) .layout,
+#screen:not(.menu-pink) .brand,
+#screen:not(.menu-pink) .content,
+#screen:not(.menu-pink) .panel,
+#screen:not(.menu-pink) .hudbox {
+  background-color: #101010 !important;
+  color: #f5e7b2 !important;
+  border-color: #b8963d !important;
+  box-shadow: 0 0 18px rgba(212,175,55,.15) !important;
 }
+
+#screen:not(.menu-pink) h1,
+#screen:not(.menu-pink) h1 span,
+#screen:not(.menu-pink) .heading,
+#screen:not(.menu-pink) .tag,
+#screen:not(.menu-pink) label,
+#screen:not(.menu-pink) .row span {
+  color: #e4c46a !important;
+}
+
+#screen:not(.menu-pink) button,
+#screen:not(.menu-pink) .mapcard {
+  background: linear-gradient(135deg,#242018,#090909) !important;
+  color: #f5e7b2 !important;
+  border: 1px solid #b8963d !important;
+}
+
+#screen:not(.menu-pink) button:hover,
+#screen:not(.menu-pink) button.active,
+#screen:not(.menu-pink) .mapcard.selected {
+  background: linear-gradient(135deg,#59471d,#17130a) !important;
+  border-color: #f0d47b !important;
+  box-shadow: 0 0 14px rgba(212,175,55,.3) !important;
+}
+
+#screen:not(.menu-pink) .muted,
+#screen:not(.menu-pink) .mapcard small {
+  color: #c9c1ad !important;
+}
+
+#screen:not(.menu-pink) select,
+#screen:not(.menu-pink) input {
+  background-color: #111 !important;
+  color: #f5e7b2 !important;
+  border-color: #b8963d !important;
+  accent-color: #d4af37;
+}
+ }
 </style>
  </head>
 <body>  
