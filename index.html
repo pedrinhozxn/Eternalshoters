@@ -343,7 +343,21 @@ body:has(#screen.hidden) #returnMainMenu{display:block}
 #mobileMapConfirm{z-index:5000}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.150.1/three.min.js"></script>
-</head>
+
+<style>
+/* ETERNALSHOTERS — PRETO E DOURADO */
+#screen:not(.menu-pink) {
+  background: #080808 !important;
+  color: #f5f0df;
+}
+
+#screen:not(.menu-pink) .layout {
+  background: rgba(8, 8, 8, 0.96);
+  border-color: #a78636;
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.12);
+}
+</style>
+ </head>
 <body>  
 <div id="loadingScreen" aria-label="Carregando EternalShoters">
   <div id="loadingInner">
