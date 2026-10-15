@@ -783,7 +783,9 @@ const renderer = new THREE.WebGLRenderer({
   powerPreference: 'low-power'
 }); renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,.9));
 renderer.shadowMap.enabled=false;renderer.shadowMap.type=THREE.BasicShadowMap;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
-renderer.outputColorSpace=THREE.SRGBColorSpace;document.body.appendChild(renderer.domElement);
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+Object.assign(renderer.domElement.style,{position:'fixed',top:'0',left:'0',width:'100vw',height:'100vh',display:'block'});
 const hemi=new THREE.HemisphereLight(0xe4f6ff,0x39404a,2.35);scene.add(hemi);
 const sun=new THREE.DirectionalLight(0xffedcf,2.6);sun.position.set(15,25,8);sun.castShadow=false;sun.shadow.mapSize.set(512,512);sun.shadow.camera.left=-35;sun.shadow.camera.right=35;sun.shadow.camera.top=35;sun.shadow.camera.bottom=-35;sun.shadow.bias=-0.0003;scene.add(sun);
 
