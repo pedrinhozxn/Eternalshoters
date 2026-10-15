@@ -1691,7 +1691,83 @@ function playWeaponSound(){
   }
  }catch(e){}
 }
-function showDamageNumber(worldPoint,amount,isCritical=false){
+// Sons ambientes leves para cada mapa do EternalShoters
+let mapAmbientSource = null;
+let mapAmbientGain = null;
+let mapAmbientFilter = null;
+
+function setMapAmbience(map) {
+  // Encerra o som ambiente anterior
+  if (mapAmbientSource) {
+    try { mapAmbientSource.stop(); } catch (e) {}
+    mapAmbientSource = null;
+  }
+
+  if (mapAmbientGain) {
+    try { mapAmbientGain.disconnect(); } catch (e) {}
+    mapAmbientGain = null;
+  }
+
+  if (mapAmbientFilter) {
+    try { mapAmbientFilter.disconnect(); } catch (e) {}
+    mapAmbientFilter = null;
+  }
+
+  // A floresta mantém seu som original
+  if (map === 'forest') return;
+
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+
+    if (!weaponAudioContext) weaponAudioContext = new AudioCtx();
+    const ctx = weaponAudioContext;
+
+    if (ctx.state === 'suspended') ctx.resume();
+
+    const length = ctx.sampleRate * 2;
+    const buffer = ctx.createBuffer(1, length, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+
+    for (let i = 0; i < length; i++) {
+      data[i] = Math.random() * 2 - 1;
+    }
+
+    const source = ctx.createBufferSource();
+    const filter = ctx.createBiquadFilter();
+    const gain = ctx.createGain();
+
+    source.buffer = buffer;
+    source.loop = true;
+    filter.type = 'lowpass';
+
+    const settings = {
+      desert: [650, 0.035],
+      city: [1100, 0.018],
+      ice: [450, 0.035],
+      snow: [450, 0.035],
+      inferno: [300, 0.025],
+      nether: [300, 0.025],
+      galaxy: [800, 0.018],
+      sky: [1400, 0.012],
+      egypt: [600, 0.025],
+      spaceship: [900, 0.018]
+    };
+
+    const setting = settings[map] || [700, 0.015];
+    filter.frequency.value = setting[0];
+    gain.gain.value = setting[1];
+
+    source.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    source.start();
+
+    mapAmbientSource = source;
+    mapAmbientFilter = filter;
+    mapAmbientGain = gain;
+  } catch (e) {}
+}function showDamageNumber(worldPoint,amount,isCritical=false){
  const el=document.createElement('div');el.className='damage-number-pop'+(isCritical?' critical':'');el.textContent='-'+Math.max(1,Math.round(amount));
  const point=worldPoint.clone().project(camera);const canvas=renderer.domElement;const rect=canvas.getBoundingClientRect();
  el.style.left=(rect.left+(point.x+1)*rect.width/2)+'px';el.style.top=(rect.top+(1-point.y)*rect.height/2)+'px';document.body.appendChild(el);
