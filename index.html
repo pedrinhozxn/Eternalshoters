@@ -66,7 +66,30 @@ body > canvas {
 #hud .weaponhud{min-width:130px;text-align:center;border-right:0;border-bottom:3px solid #27bdff;background:rgba(4,24,43,.86)}
 #hud .help{text-align:center;background:rgba(4,24,43,.72);padding:9px 13px;border:1px solid #1d5277;font-size:11px}
 @media(max-width:760px){#hud .hudtop{gap:5px;padding:8px 6px}#hud .hudtop .hudbox{min-width:0;flex:1;padding:7px 5px;font-size:10px}#hud .bottomhud{bottom:135px;gap:6px;flex-direction:column;width:auto;max-width:96vw}#hud .weaponhud{font-size:13px;padding:6px 12px;min-width:110px}#hud .help{font-size:9px;line-height:1.45;padding:5px 8px}}
+/* ETERNALSHOTERS - MENU EM TELA CHEIA */
+#screen:not(.hidden) {
+width: 100vw;
+min-height: 100vh;
+box-sizing: border-box;
+}
 
+#screen .layout {
+width: 100%;
+max-width: none;
+max-height: 100vh;
+min-height: 100vh;
+margin: 0;
+box-sizing: border-box;
+border-radius: 0;
+}
+
+@media (max-width: 760px) {
+#screen .layout {
+grid-template-columns: 1fr;
+gap: 12px;
+padding: 12px;
+}
+}
 
 /* MENU EternalShoters: identidade preta/vermelha e conteúdo centralizado */
 #screen {
